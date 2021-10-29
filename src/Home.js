@@ -16,8 +16,6 @@ export default function Home(){
        const {data} = await axios.post("http://localhost:8081/user/naverLogin",accessToken);
        console.log(data);
         if(data !== undefined && data !== ""){
-            let type = 0;
-            // eslint-disable-next-line eqeqeq
             const naverLogin = new window.naver.LoginWithNaverId({
                 clientId:"GFRk_SJiZVzSpToWr01V",
                 callbackUrl:"http://localhost:3000/#/", 
