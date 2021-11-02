@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Redirect, useLocation } from "react-router";
-import { Form, Button } from "react-bootstrap";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./LoginTest.css";
+import styles from "./css/LoginTest.module.css";
+import { Link } from "react-router-dom";
 
 const { naver } = window;
 
@@ -73,49 +74,55 @@ export default function LoginTest() {
       {sessionStorage.getItem("user") !== null ? (
         <Redirect to="/"></Redirect>
       ) : (
-        <div className="loginform">
+        <div className={styles.loginform}>
           <h1>국비 위키</h1>
-
           <br />
-          <Form onSubmit={onSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <br />
-              <input
-                className="input_id"
-                type="text"
-                name="id"
-                placeholder="이메일 주소"
-                onChange={onChange}
-              />
-            </Form.Group>
+          <form>
+            <br />
+            <p>Email address</p>
+            <input
+              className={styles.input_id}
+              type="text"
+              name="id"
+              placeholder="이메일 주소"
+              onChange={onChange}
+            />
 
-            <Form.Group className="mb-4" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <br />
-              <input
-                className="input_password"
-                type="password"
-                name="password"
-                placeholder="비밀번호"
-                onChange={onChange}
-              />
-            </Form.Group>
+            <br />
+            <p>Password</p>
+            <input
+              className={styles.input_password}
+              type="password"
+              name="password"
+              placeholder="비밀번호"
+              onChange={onChange}
+            />
 
-            <div className="d-grid gap-2 mb-4">
-              <Button variant="success" type="submit" size="lg">
-                로그인
-              </Button>
-            </div>
+            <br />
+            <button
+              className={styles.login_btn}
+              type="button"
+              name="submit"
+              onChange={onChange}
+            >
+              로그인
+            </button>
 
             <div>
-              <div className="horizontal">
+              <div className={styles.horizontal}>
                 <span>or</span>
               </div>
             </div>
-          </Form>
+          </form>
 
           <div id="naverIdLogin"></div>
+          <div className={styles.horizontal}></div>
+          <div className={styles.loginlast}>
+            아직 회원이 아니세요?
+            <span>
+              <Link to="join">회원가입</Link>
+            </span>
+          </div>
         </div>
       )}
     </>
